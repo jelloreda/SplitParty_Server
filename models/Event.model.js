@@ -31,15 +31,18 @@ const eventSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'User'
     }],
-    location: { //
-      type: {
-        type: String,
-        enum: ['Point']
-      },
-      coordinates: {
-        type: [Number]
-      }
+    location: {
+      type: String,
     }
+    // { //
+    //   type: {
+    //     type: String,
+    //     enum: ['Point']
+    //   },
+    //   coordinates: {
+    //     type: [Number]
+    //   }
+    // }
   },
   {
     timestamps: true

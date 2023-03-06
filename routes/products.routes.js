@@ -11,15 +11,30 @@ router.get("/getAllProducts", (req, res, next) => {
         .catch(err => console.log(err))
 })
 
+
+router.post("/saveProduct", (req, res, next) => {
+
+    const { name, price, picture } = req.body
+
+    Product
+        .create({ name, price, picture })
+        .then(response => res.json(response))
+        .catch(err => next(err))
+})
+
+
 router.get("/getOneProduct/:id", (req, res, next) => {
 
     const { id } = req.params
+
+    console.log(req.payload)
 
     Product
         .findById(id)
         .then(response => res.json(response))
         .catch(err => next(err))
 })
+
 
 router.put("/editProduct/:id", (req, res, next) => {
 
@@ -38,17 +53,7 @@ router.put("/editProduct/:id", (req, res, next) => {
 })
 
 
-router.post("/saveProduct", (req, res, next) => {
-
-    const { name, price, picture } = req.body
-
-    Product
-        .create({ name, price, picture })
-        .then(response => res.json(response))
-        .catch(err => next(err))
-})
-
-router.delete("/delete/:id", (req, res, next) => {
+router.delete("/deleteProduct/:id", (req, res, next) => {
 
     const { id } = req.params
 
