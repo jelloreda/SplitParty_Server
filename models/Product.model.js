@@ -8,10 +8,20 @@ const productSchema = new Schema(
       required: [true, 'Name is required'],
       trim: true
     },
+    brand: {
+      type: String,
+      trim: true
+    },
     price: {
       type: Number,
       required: [true, 'Price is required'],
       trim: true
+    },
+    unit: {
+      type: String
+    },
+    quantity: {
+      type: Number
     },
     picture: {
       type: String,
