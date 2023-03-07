@@ -1,3 +1,4 @@
+const { verifyToken } = require("../middlewares/verifyToken")
 const Event = require("../models/Event.model")
 
 const router = require("express").Router()
@@ -11,12 +12,13 @@ router.get('/getAllEvents', (req, res, next) => {
         .catch(err => console.log(err))
 })
 
-router.post('/saveEvent', (req, res, next) => {
+router.post('/saveEvent', verifyToken, (req, res, next) => {
 
+    const { _id: owner } = req.payload
     const { name, date, description, location } = req.body
 
     Event
-        .create({ name, date, description, location })
+        .create({ name, date, description, location, owner })
         .then(response => res.json(response))
         .catch(err => next(err))
 })
@@ -31,7 +33,7 @@ router.get('/getOneEvent/:id', (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.put("/editEvent/:id", (req, res, next) => {
+router.put("/editEvent/:id", verifyToken, (req, res, next) => {
 
     const { id } = req.params
     const { name, date, description } = req.body
@@ -47,7 +49,7 @@ router.put("/editEvent/:id", (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.delete("/deleteEvent/:id", (req, res, next) => {
+router.delete("/deleteEvent/:id", verifyToken, (req, res, next) => {
 
     const { id } = req.params
 
