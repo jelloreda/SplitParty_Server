@@ -15,10 +15,10 @@ router.get('/getAllEvents', (req, res, next) => {
 router.post('/saveEvent', verifyToken, (req, res, next) => {
 
     const { _id: owner } = req.payload
-    const { name, date, description, location } = req.body
+    const { name, date, description, products, location } = req.body
 
     Event
-        .create({ name, date, description, location, owner })
+        .create({ name, date, description, products, location, owner })
         .then(response => res.json(response))
         .catch(err => next(err))
 })
