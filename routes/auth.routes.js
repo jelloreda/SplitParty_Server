@@ -11,6 +11,12 @@ router.post('/signup', (req, res, next) => {
 
   const { username, email, password, avatar } = req.body
 
+  if (!avatar) {
+    // avatar = User.schema.path('avatar').getDefault();
+    console.log('El avatar está vacio!');
+
+  }
+
   User
     .findOne({ email })
     .then((foundUser) => {

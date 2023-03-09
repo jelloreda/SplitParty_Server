@@ -1,5 +1,6 @@
 const { verifyToken } = require("../middlewares/verifyToken")
 const Event = require("../models/Event.model")
+const Product = require("../models/Product.model")
 
 const router = require("express").Router()
 
@@ -29,6 +30,7 @@ router.get('/getOneEvent/:id', (req, res, next) => {
 
     Event
         .findById(id)
+        .populate(products)
         .then(response => res.json(response))
         .catch(err => next(err))
 })

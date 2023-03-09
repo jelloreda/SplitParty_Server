@@ -12,4 +12,7 @@ router.use("/events", eventRoutes)
 const productRoutes = require("./products.routes")
 router.use("/products", productRoutes)
 
+const uploadRoutes = require("./upload.routes")
+router.use("/upload", uploadRoutes)
+
 module.exports = router
