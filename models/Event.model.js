@@ -7,13 +7,17 @@ const eventSchema = new Schema(
     name: {
       type: String,
       required: [true, 'Name is required'],
+      unique: true,
       trim: true
     },
     date: {
       type: Date,
+      required: [true, 'The date is obligatory']
     },
     description: {
       type: String,
+      required: [true, 'Description is required'],
+      minlength: [10, 'Description must be min. 10 characters']
     },
     banner: {
       type: String,
