@@ -24,7 +24,8 @@ const userSchema = new Schema(
     },
     avatar: {
       type: String,
-      default: 'https://cdn.icon-icons.com/icons2/632/PNG/512/user_icon-icons.com_57997.png'
+      default: 'https://cdn.icon-icons.com/icons2/632/PNG/512/user_icon-icons.com_57997.png',
+      set: value => value ? value : value = 'https://cdn.icon-icons.com/icons2/632/PNG/512/user_icon-icons.com_57997.png'
     },
     events: [{
       type: Schema.Types.ObjectId,
