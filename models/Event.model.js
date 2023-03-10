@@ -28,8 +28,11 @@ const eventSchema = new Schema(
       ref: 'User'
     },
     products: [{
-      type: Schema.Types.ObjectId,
-      ref: 'Product'
+      product: {
+        type: Schema.Types.ObjectId,
+        ref: 'Product'
+      },
+      quantity: Number
     }],
     guests: [{
       type: Schema.Types.ObjectId,

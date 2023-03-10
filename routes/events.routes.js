@@ -30,7 +30,7 @@ router.get('/getOneEvent/:id', (req, res, next) => {
 
     Event
         .findById(id)
-        .populate(products)
+        .populate('products.product')
         .then(response => res.json(response))
         .catch(err => next(err))
 })
