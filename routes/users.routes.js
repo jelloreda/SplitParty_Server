@@ -3,10 +3,13 @@ const User = require("../models/User.model")
 
 const router = require("express").Router()
 
-router.get('/getAllUsers', (req, res, next) => {
+router.get('/getAllUsers', verifyToken, (req, res, next) => {
+
+    const user = req.payload
+    console.log(user)
 
     User
-        .find()
+        .find({ _id: { $ne: user._id } })
         .sort({ username: 1 })
         .then(response => setTimeout(() => res.json(response), 1000))
         .catch(err => console.log(err))
