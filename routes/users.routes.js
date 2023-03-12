@@ -41,6 +41,34 @@ router.put("/editUser/:id", verifyToken, (req, res, next) => {
         .catch(err => next(err))
 })
 
+router.put("/addEventToUser", (req, res, next) => {
+
+    const { ownerId, eventId } = req.body
+
+    User
+        .findByIdAndUpdate(
+            ownerId,
+            { $push: { events: eventId } },
+            { new: true }
+        )
+        .then(response => res.json(response))
+        .catch(err => next(err))
+})
+
+router.put("/addFriend", (req, res, next) => {
+
+    const { ownerId, userId } = req.body
+
+    User
+        .findByIdAndUpdate(
+            ownerId,
+            { $push: { friends: userId } },
+            { new: true }
+        )
+        .then(response => res.json(response))
+        .catch(err => next(err))
+})
+
 router.delete("/deleteUser/:id", verifyToken, (req, res, next) => {
 
     const { id } = req.params
