@@ -1,3 +1,4 @@
+const { time } = require("console")
 const { Schema, model } = require("mongoose")
 const Product = require("./Product.model")
 const User = require("./User.model")
@@ -13,6 +14,9 @@ const eventSchema = new Schema(
     date: {
       type: Date,
       required: [true, 'The date is obligatory']
+    },
+    time: {
+      type: String,
     },
     description: {
       type: String,
