@@ -60,12 +60,12 @@ router.put("/editUser/:id", verifyToken, (req, res, next) => {
 
 router.put("/addEventToUser", (req, res, next) => {
 
-    const { ownerId, eventId } = req.body
+    const { owner_id, event_id } = req.body
 
     User
         .findByIdAndUpdate(
-            ownerId,
-            { $push: { events: eventId } },
+            owner_id,
+            { $addToSet: { events: event_id } },
             { new: true }
         )
         .then(response => res.json(response))
@@ -75,7 +75,6 @@ router.put("/addEventToUser", (req, res, next) => {
 router.put("/addFriend", (req, res, next) => {
 
     const { owner_id, user_id } = req.body
-    console.log('estoy en el back', { owner_id, user_id });
 
     User
         .findByIdAndUpdate(
