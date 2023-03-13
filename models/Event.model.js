@@ -45,15 +45,6 @@ const eventSchema = new Schema(
     location: {
       type: String,
     }
-    // { //
-    //   type: {
-    //     type: String,
-    //     enum: ['Point']
-    //   },
-    //   coordinates: {
-    //     type: [Number]
-    //   }
-    // }
   },
   {
     timestamps: true

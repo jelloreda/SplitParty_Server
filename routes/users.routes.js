@@ -1,4 +1,5 @@
 const { verifyToken } = require("../middlewares/verifyToken")
+const Event = require("../models/Event.model")
 const User = require("../models/User.model")
 
 const router = require("express").Router()
@@ -6,7 +7,6 @@ const router = require("express").Router()
 router.get('/getAllUsers', verifyToken, (req, res, next) => {
 
     const user = req.payload
-    console.log(user)
 
     User
         .find({ _id: { $ne: user._id } })
@@ -21,6 +21,23 @@ router.get('/getOneUser/:id', (req, res, next) => {
 
     User
         .findById(id)
+        .then(response => res.json(response))
+        .catch(err => console.log(err))
+})
+
+router.get('/getFriendsAndEvents', verifyToken, (req, res, next) => {
+
+    const { _id } = req.payload
+
+    User
+        .findById(_id)
+        .populate({
+            path: 'friends',
+            populate: {
+                path: 'events',
+            }
+        })
+
         .then(response => res.json(response))
         .catch(err => console.log(err))
 })
@@ -57,12 +74,13 @@ router.put("/addEventToUser", (req, res, next) => {
 
 router.put("/addFriend", (req, res, next) => {
 
-    const { ownerId, userId } = req.body
+    const { owner_id, user_id } = req.body
+    console.log('estoy en el back', { owner_id, user_id });
 
     User
         .findByIdAndUpdate(
-            ownerId,
-            { $push: { friends: userId } },
+            owner_id,
+            { $addToSet: { friends: user_id } },
             { new: true }
         )
         .then(response => res.json(response))
