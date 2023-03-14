@@ -1,6 +1,5 @@
 const { verifyToken } = require("../middlewares/verifyToken")
 const Event = require("../models/Event.model")
-const Product = require("../models/Product.model")
 
 const router = require("express").Router()
 
