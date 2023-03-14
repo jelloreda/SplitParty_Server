@@ -7,7 +7,18 @@ router.get("/getAllProducts", (req, res, next) => {
     Product
         .find()
         .sort({ name: 1 })
-        .then(response => setTimeout(() => res.json(response), 1000))
+        .then(response => res.json(response))
+        .catch(err => console.log(err))
+})
+
+router.post("/getEditProducts", (req, res, next) => {
+
+    const { selectedProductsIds } = req.body
+
+    Product
+        .find({ _id: { $nin: selectedProductsIds } })
+        .sort({ name: 1 })
+        .then(response => res.json(response))
         .catch(err => console.log(err))
 })
 

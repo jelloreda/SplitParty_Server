@@ -43,12 +43,15 @@ router.get('/getOneEvent/:id', (req, res, next) => {
 router.put("/editEvent/:id", verifyToken, (req, res, next) => {
 
     const { id } = req.params
-    const { name, date, description } = req.body
+    const { name, date, time, description, products, location } = req.body
 
     const updatedEvent = {}
     if (name) updatedEvent.name = name
     if (date) updatedEvent.date = date
+    if (time) updatedEvent.time = time
     if (description) updatedEvent.description = description
+    if (products) updatedEvent.products = products
+    if (location) updatedEvent.location = location
 
     Event
         .findByIdAndUpdate(id, updatedEvent, { new: true })
