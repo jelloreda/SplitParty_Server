@@ -72,20 +72,6 @@ router.put("/addEventToUser", (req, res, next) => {
         .catch(err => next(err))
 })
 
-router.put("/joinEvent", (req, res, next) => {
-
-    const { owner_id, event_id } = req.body
-
-    User
-        .findByIdAndUpdate(
-            owner_id,
-            { $addToSet: { going: event_id } },
-            { new: true }
-        )
-        .then(response => res.json(response))
-        .catch(err => next(err))
-})
-
 router.put("/addFriend", (req, res, next) => {
 
     const { owner_id, user_id } = req.body

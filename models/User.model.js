@@ -37,10 +37,6 @@ const userSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: 'Event'
     }],
-    going: [{
-      type: Schema.Types.ObjectId,
-      ref: 'Event'
-    }],
     products: [{
       type: Schema.Types.ObjectId,
       ref: 'Product'
