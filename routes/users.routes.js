@@ -21,6 +21,7 @@ router.get('/getOneUser/:id', (req, res, next) => {
 
     User
         .findById(id)
+        .populate('friends')
         .then(response => res.json(response))
         .catch(err => console.log(err))
 })
