@@ -49,4 +49,17 @@ router.get('/verify', verifyToken, (req, res, next) => {
   res.json(req.payload)
 })
 
+router.get('/updateToken', verifyToken, (req, res, next) => {
+
+  const { _id } = req.payload
+
+  User
+    .findById(_id)
+    .then(user => {
+      const newToken = user.signToken()
+      res.json(newToken)
+    })
+    .catch(err => console.log(err))
+})
+
 module.exports = router
