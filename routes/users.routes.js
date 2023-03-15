@@ -87,6 +87,20 @@ router.put("/addFriend", (req, res, next) => {
         .catch(err => next(err))
 })
 
+router.put("/deleteFriend", (req, res, next) => {
+
+    const { owner_id, user_id } = req.body
+
+    User
+        .findByIdAndUpdate(
+            owner_id,
+            { $pull: { friends: user_id } },
+            { new: true }
+        )
+        .then(response => res.json(response))
+        .catch(err => next(err))
+})
+
 router.delete("/deleteUser/:id", verifyToken, (req, res, next) => {
 
     const { id } = req.params

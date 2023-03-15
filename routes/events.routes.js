@@ -38,6 +38,8 @@ router.get('/getOneEvent/:id', (req, res, next) => {
                 model: 'Product'
             }
         })
+        .populate('owner')
+        .populate('guests')
         .then(response => res.json(response))
         .catch(err => next(err))
 })
