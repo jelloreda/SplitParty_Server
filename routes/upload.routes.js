@@ -1,15 +1,11 @@
 const router = require("express").Router()
+
 const uploaderMiddleware = require("../middlewares/uploader.middleware")
 
-router.post('/image', uploaderMiddleware.single('imageData'), (req, res) => {
+const { uploaderMiddlewareroute } = require("../controllers/upload.controllers")
 
-    if (!req.file) {
-        res.status(500).json({ errorMessage: 'Error loading the file' })
-        return
-    }
 
-    res.json({ cloudinary_url: req.file.path })
-})
+router.post('/image', uploaderMiddleware.single('imageData'), uploaderMiddlewareroute)
 
 
 module.exports = router
