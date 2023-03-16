@@ -1,13 +1,13 @@
-const router = require("express").Router()
+const router = require('express').Router()
 
-const { verifyToken } = require("../middlewares/verifyToken")
+const { verifyToken } = require('../middlewares/verifyToken')
 
 const {
   signup,
   login,
   verify,
   updateToken
-} = require("../controllers/auth.controllers")
+} = require('../controllers/auth.controllers')
 
 router.post('/signup', signup)
 router.post('/login', login)
