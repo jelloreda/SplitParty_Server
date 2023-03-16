@@ -77,7 +77,9 @@ const getUserEvents = (req, res, next) => {
         .find({ owner: user_id })
         .sort({ date: 1 })
         .populate('owner')
-        .then(response => res.json(response))
+        .then(response => {
+            res.json(response)
+        })
         .catch(err => console.log(err))
 }
 
