@@ -22,19 +22,13 @@ const getOneUser = (req, res, next) => {
         .catch(err => console.log(err))
 }
 
-const getFriendsAndEvents = (req, res, next) => {
+const getFriends = (req, res, next) => {
 
     const { _id } = req.payload
 
     User
         .findById(_id)
-        .populate({
-            path: 'friends',
-            populate: {
-                path: 'events',
-            }
-        })
-
+        .populate('friends')
         .then(response => res.json(response))
         .catch(err => console.log(err))
 }
@@ -110,7 +104,7 @@ const deleteUser = (req, res, next) => {
 module.exports = {
     getAllUsers,
     getOneUser,
-    getFriendsAndEvents,
+    getFriends,
     editUser,
     addEventToUser,
     addFriend,

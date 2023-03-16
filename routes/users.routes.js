@@ -4,7 +4,7 @@ const { verifyToken } = require('../middlewares/verifyToken')
 
 const {
     getOneUser,
-    getFriendsAndEvents,
+    getFriends,
     getAllUsers,
     editUser,
     addEventToUser,
@@ -15,7 +15,7 @@ const {
 
 router.get('/getAllUsers', verifyToken, getAllUsers)
 router.get('/getOneUser/:id', getOneUser)
-router.get('/getFriendsAndEvents', verifyToken, getFriendsAndEvents)
+router.get('/getFriends', verifyToken, getFriends)
 router.put('/editUser/:id', verifyToken, editUser)
 router.put('/addEventToUser', addEventToUser)
 router.put('/addFriend', addFriend)

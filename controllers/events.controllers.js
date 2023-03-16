@@ -71,10 +71,10 @@ const deleteEvent = (req, res, next) => {
 
 const getUserEvents = (req, res, next) => {
 
-    const { _id: id } = req.payload
+    const { user_id } = req.params
 
     Event
-        .find({ owner: id })
+        .find({ owner: user_id })
         .sort({ date: 1 })
         .populate('owner')
         .then(response => res.json(response))
