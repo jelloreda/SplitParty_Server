@@ -108,6 +108,20 @@ const joinEvent = (req, res, next) => {
         .catch(err => next(err))
 }
 
+const exitEvent = (req, res, next) => {
+
+    const { owner_id, event_id } = req.body
+
+    Event
+        .findByIdAndUpdate(
+            event_id,
+            { $pull: { guests: owner_id } },
+            { new: true }
+        )
+        .then(response => res.json(response))
+        .catch(err => next(err))
+}
+
 module.exports = {
     getAllEvents,
     saveEvent,
@@ -116,5 +130,6 @@ module.exports = {
     deleteEvent,
     getUserEvents,
     getJoinedEvents,
-    joinEvent
+    joinEvent,
+    exitEvent
 }

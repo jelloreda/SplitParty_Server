@@ -11,6 +11,7 @@ const {
     getUserEvents,
     getJoinedEvents,
     joinEvent,
+    exitEvent
 } = require('../controllers/events.controllers')
 
 router.get('/getAllEvents', getAllEvents)
@@ -20,6 +21,7 @@ router.post('/saveEvent', verifyToken, saveEvent)
 router.get('/getUserEvents/:user_id', verifyToken, getUserEvents)
 router.put('/editEvent/:id', verifyToken, editEvent)
 router.put('/joinEvent', joinEvent)
+router.put('/exitEvent', exitEvent)
 router.delete('/deleteEvent/:id', verifyToken, deleteEvent)
 
 
