@@ -104,6 +104,7 @@ const joinEvent = (req, res, next) => {
             { $addToSet: { guests: owner_id } },
             { new: true }
         )
+        .populate('guests')
         .then(response => res.json(response))
         .catch(err => next(err))
 }
