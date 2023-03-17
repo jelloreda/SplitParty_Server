@@ -30,8 +30,8 @@ const userSchema = new Schema(
     },
     avatar: {
       type: String,
-      default: 'https://cdn.icon-icons.com/icons2/632/PNG/512/user_icon-icons.com_57997.png',
-      set: value => value ? value : value = 'https://cdn.icon-icons.com/icons2/632/PNG/512/user_icon-icons.com_57997.png'
+      default: 'https://res.cloudinary.com/dztjq7i4a/image/upload/v1679050445/user_icon-icons.com_57997_gckafe.png',
+      set: value => value ? value : value = 'https://res.cloudinary.com/dztjq7i4a/image/upload/v1679050445/user_icon-icons.com_57997_gckafe.png'
     },
     events: [{
       type: Schema.Types.ObjectId,
